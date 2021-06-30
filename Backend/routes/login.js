@@ -1,7 +1,6 @@
 const express = require('express');
 let app = express.Router();
-const cors = require('cors');
-
+const jwt= require('jsonwebtoken');
 
 const SignUpData = require('../model/signupdata');
 
@@ -24,13 +23,17 @@ app.post('/', function (req, res) {
 
     // mongo check for user
     if (username == 'admin' && password == '1234') {
-        req.session.role = 'admin';
+        // req.session.role = 'admin';
         console.log("admin login success")
-        let token = jwt.sign(payload,'secretKey')
-        res.send({ status: true });
+
+        let payload = {subject: username+password, role: 'admin'}
+        let token = jwt.sign(payload, 'secretKey')
+        res.send({ status: true,token ,role: 'admin'});
 
     } else {
         SignUpData.findOne({ Username: username, Password: password }, function (err, user) {
+            console.log(req.body,"aaff");
+
             if (err) {
                 res.send({ status: false, data: 'Response error. No Internet' });
 
@@ -38,10 +41,9 @@ app.post('/', function (req, res) {
             
 
             else if (user) {
-                let payload={subject:username+password}
-                let token = jwt.sign(payload,'secretKey')
-                req.session.role = 'user';
-                res.send({ status: true, token });
+                let payload = {subject: username+password, role: 'user'}
+                let token = jwt.sign(payload, 'secretKey')
+                res.send({ status: true,token, role: 'user' })
             } else {
                 res.send({ status: false, data: 'NOT FOUND' });
             }

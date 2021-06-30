@@ -1,0 +1,52 @@
+<app-navigator></app-navigator>
+
+<div class="section hero">
+    <div class="container">
+        <div class="row">
+            <div class="one-half column col-6 textshadow" *ngFor='let singlebook of singlebooks'>
+                <h4 class="titleshadow">
+                    {{singlebook.title}}
+                </h4>
+                <ul>
+                    <li>Author :
+                        {{singlebook.author}}
+                    </li>
+                    <li>Language :
+                        {{singlebook.language}}
+                    </li>
+                    <li>Pages :
+                        {{singlebook.pageCount}}
+                    </li>
+                    <li>Category :
+                        {{singlebook.categories}}
+                    </li>
+                    <li>Published Date :
+                        {{singlebook.publishedDate}}
+                    </li>
+                </ul>
+
+                <div class="column">
+                    <div class="one-third row value">
+                        <a class="button btn1" href="#">Add to List</a>
+                    </div>
+                    <div class="one-third row value">
+                        <a class="button btn1" href="#">Read</a>
+                    </div>
+                    <div class="one-third row value">
+                        <a class="button btn1" href="#">Listen</a>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class=" row value">
+                        <a class="button btn2" href="/add/update_book/<%=data.id%>" id="updatebook">Update</a>
+                    </div>
+                    <div class=" row value">
+                        <a class="button btn2" onclick="deleteFunc()" id="deletebook">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

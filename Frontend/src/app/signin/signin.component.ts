@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 
 
@@ -34,21 +35,27 @@ export class SigninComponent implements OnInit {
   }
 
   loginUser() {
-    this._auth.loginUser(this.user).then(function (response) {
-      console.log(response)
-      let result = response.data
+    this._auth.loginUser(this.user)
+      .subscribe(
+        response => {
+          console.log(response, 'check');
+          let result = response;
           if (result.status) {
-            alert("success")
-            // localStorage.setItem('token', response.token)
-            // this._router.navigate(['/home'])
+            localStorage.setItem('token', response.token)
+            this._router.navigate(['/home']);
           } else {
-            alert(result.status)
+            Swal.fire(
+              'Warning!!',
+              'User not found!',
+              'error')
+              .then (
+                refresh =>{
+                  window.location.reload();
+              }) 
           }
-    })
-    .catch(function (error) {
-      alert("error")
-    });
-  }
+        })
+
+      }
 
 }
 

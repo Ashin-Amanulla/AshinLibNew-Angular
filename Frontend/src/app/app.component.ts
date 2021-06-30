@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import {AuthService} from './auth.service';
+import {AuthService} from './auth.service';
 import {Router} from '@angular/router'
 
 @Component({
@@ -11,12 +11,12 @@ import {Router} from '@angular/router'
 export class AppComponent {
   title = 'Library';
   constructor(
-    // public _auth:AuthService,
+    public _auth:AuthService,
     private _router:Router){
 
 }
-//   loggedUser()
-// {
-//   this._router.navigate(['/add'])
-// }
+  loggedUser()
+{
+  this._router.navigate(['/add'])
+}
 }

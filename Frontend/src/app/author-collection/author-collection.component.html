@@ -1,0 +1,35 @@
+<app-navigator></app-navigator>
+
+<section class="books_page">
+
+
+    <h1 id="books">
+        Books
+    </h1>
+    <div class="search">
+        <form class="search-box">
+            <input type="text" placeholder=" Search Books " />
+            <button type="reset"></button>
+        </form>
+    </div>
+
+
+</section>
+
+<section>
+    <div class="col" >
+        <div class="row1">           
+            <div class=" b"  *ngFor='let AuthorCollection of AuthorCollections'>
+                <a style="cursor:pointer" (click)="getBook(id)" routerLink="/authors/:id">                    
+                    <img src="../../assets/images/{{AuthorCollection.image}}">
+                    <br>
+                    <span class="book_name">
+                        {{AuthorCollection.title}}<br>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- --------------------------------footer------------------- -->
+<app-footer></app-footer>

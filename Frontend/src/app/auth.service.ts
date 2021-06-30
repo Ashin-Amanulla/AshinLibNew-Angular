@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
-import axios from 'axios'
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +14,20 @@ export class AuthService {
 
   loginUser(user: any) {
     console.log('user', user)
-    return axios.post(this._loginUrl, user)
+    return this.http.post<any>(this._loginUrl, user)
   }
 
+  loggedIn()
+  {
+    return !!localStorage.getItem('token')
+  }
+  getToken()
+  {
+    return localStorage.getItem('token')
+  }
+  userrole()
+  {
+    return localStorage.getItem('role')
+  }
 }
 
