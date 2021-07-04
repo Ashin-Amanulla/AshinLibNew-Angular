@@ -1,0 +1,70 @@
+<app-navigator></app-navigator>
+
+<div class="container add1">
+    <h1>
+        Add Author
+    </h1>
+</div>
+<div class="container">
+
+    <form id='newForm' [formGroup]="addauthorForm" (ngSubmit)='addNewAuthor()' method="POST"
+        enctype="multipart/form-data">
+        <div class="row">
+            <div class="six columns">
+                <label>
+                    Author Title
+                </label>
+                <input class="u-full-width" type="text" [(ngModel)]="author.title" formControlName="title" name="title"
+                    placeholder="Author Title" id="addtitle" value="">
+            </div>
+            <div class="six columns">
+                <label>
+                    Country
+                </label>
+                <input class="u-full-width " type="text" [(ngModel)]="author.country" formControlName="country"
+                    name="country" placeholder="Country" id="addauthor" value="">
+            </div>
+        </div>
+        <!-- Second row -->
+        <br>
+        <div class="row">
+            <div class="six columns">
+                <label>
+                    Date of Birth
+                </label>
+                <input class="u-full-width" type="text" [(ngModel)]="author.dob" formControlName="dob" name="dob"
+                    placeholder="Date of Birth" id="addtitle" value="">
+            </div>
+            <div class="six columns">
+                <label>
+                    Famous Works
+                </label>
+                <input class="u-full-width " type="text" name="FamousWorks" [(ngModel)]="author.FamousWorks"
+                    formControlName="FamousWorks" placeholder="Famous Works" id="addbook" value="">
+            </div>
+        </div>
+        <!-- textbox -->
+        <br>
+        <label>
+            Author Details
+        </label>
+        <input class="u-full-width" type="text" placeholder="Author Details" [(ngModel)]="author.about"
+            formControlName="about" name="about" id="addtext" />
+
+        <!-- image -->
+        <br><br>
+        <label>
+            Image Url
+        </label>
+        <input type="text" class="u-full-width" id="addfile" [(ngModel)]="author.image" formControlName="image"
+            placeholder="Add image URL/address" name="image"  value="">
+
+        <br>
+        <br>
+        <input class="button-primary" type="submit" value="Submit"
+            [disabled]="addauthorForm.pristine || addauthorForm.invalid" id="addsubmit">
+    </form>
+</div>
+
+
+<app-footer></app-footer>

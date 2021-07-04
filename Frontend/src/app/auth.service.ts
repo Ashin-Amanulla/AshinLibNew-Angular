@@ -13,7 +13,6 @@ export class AuthService {
 
 
   loginUser(user: any) {
-    console.log('user', user)
     return this.http.post<any>(this._loginUrl, user)
   }
 
@@ -21,12 +20,15 @@ export class AuthService {
   {
     return !!localStorage.getItem('token')
   }
+
   getToken()
   {
     return localStorage.getItem('token')
   }
-  userrole()
+  
+  getUser()
   {
+    console.log(localStorage.getItem('role'))
     return localStorage.getItem('role')
   }
 }

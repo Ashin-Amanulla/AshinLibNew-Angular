@@ -4,11 +4,11 @@
 
 
     <h1 id="books">
-        Books
+        Authors
     </h1>
     <div class="search">
         <form class="search-box">
-            <input type="text" placeholder=" Search Books " />
+            <input type="text" placeholder=" Search Author " />
             <button type="reset"></button>
         </form>
     </div>
@@ -20,8 +20,8 @@
     <div class="col" >
         <div class="row1">           
             <div class=" b"  *ngFor='let AuthorCollection of AuthorCollections'>
-                <a style="cursor:pointer" (click)="getBook(id)" routerLink="/authors/:id">                    
-                    <img src="../../assets/images/{{AuthorCollection.image}}">
+                <a style="cursor:pointer" (click)="getAuthor(AuthorCollection._id)">
+                    <img src="{{AuthorCollection.image}}">
                     <br>
                     <span class="book_name">
                         {{AuthorCollection.title}}<br>

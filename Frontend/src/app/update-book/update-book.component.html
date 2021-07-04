@@ -1,0 +1,86 @@
+<app-navigator></app-navigator>
+
+<div class="container add1">
+    <h1>
+        Add Book
+    </h1>
+</div>
+<div class="container">
+    <form id='newForm' [formGroup]="addbookForm" (ngSubmit)='updateBook()' method="POST" >
+        <!-- First row -->
+        <div class="row">
+            <div class="six columns">
+                <label>
+                    Book Title
+                </label>
+                <input class="u-full-width" type="text" [(ngModel)]="book.title" name="title" placeholder="Book Title"
+                    id="addtitle" formControlName="title" value="" />
+            </div>
+            <div class="six columns">
+                <label>
+                    Book Author
+                </label>
+                <input class="u-full-width " type="text" [(ngModel)]="book.author" name="author"
+                    placeholder=" Book Author" value="" id="addbook" formControlName="author" />
+            </div>
+        </div>
+        <!-- Second row -->
+        <br>
+        <div class="row">
+            <div class="six columns">
+                <label>
+                    Page Counts
+                </label>
+                <input class="u-full-width" type="text" [(ngModel)]="book.pageCount" name="pageCount"
+                    placeholder=" Page Counts" id="addtitle" value="" formControlName="pageCount" />
+            </div>
+            <div class="six columns">
+                <label>
+                    Published Date
+                </label>
+                <input class="u-full-width " type="text" [(ngModel)]="book.publishedDate" name="publishedDate"
+                    placeholder="Published Date" id="addbook" value="" formControlName="publishedDate" />
+            </div>
+        </div>
+        <!-- third row -->
+        <br>
+        <div class="row">
+            <div class="six columns">
+                <label>
+                    Category
+                </label>
+                <input class="u-full-width" type="text" [(ngModel)]="book.categories" name="categories"
+                    placeholder="Category" id="addtitle" value="" formControlName="categories" />
+            </div>
+            <div class="six columns">
+                <label>
+                    Language
+                </label>
+                <input class="u-full-width " type="text" [(ngModel)]="book.language" name="language"
+                    placeholder="Language" id="addbook" value="" formControlName="language" />
+            </div>
+        </div>
+        <!-- textbox -->
+        <br>
+        <label>
+            Book Details
+        </label>
+        <input class="u-full-width" type="text" placeholder="Book Details" [(ngModel)]="book.about" name="about"
+            id="addtext" value="" formControlName="about" />
+        <!-- image -->
+        <br><br>
+        <label>
+            Image Url
+        </label>
+        <input type="text" class="u-full-width" id="addfile" name="image" placeholder="Add image URL/address" value=""
+            formControlName="image" [(ngModel)]="book.image">
+        <br>
+        <!-- submit -->
+        <br>
+        <input class="button-primary" type="submit" [disabled]="addbookForm.pristine || addbookForm.invalid"
+            value="Submit" id="addsubmit">
+    </form>
+</div>
+
+
+<app-footer></app-footer>

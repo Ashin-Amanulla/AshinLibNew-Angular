@@ -38,10 +38,10 @@ export class SigninComponent implements OnInit {
     this._auth.loginUser(this.user)
       .subscribe(
         response => {
-          console.log(response, 'check');
           let result = response;
           if (result.status) {
             localStorage.setItem('token', response.token)
+            localStorage.setItem('role', response.role)
             this._router.navigate(['/home']);
           } else {
             Swal.fire(

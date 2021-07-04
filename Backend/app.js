@@ -18,22 +18,12 @@ app.use(session({      //session creation
     saveUninitialized: true,
     cookie: { secure: false }
 }));
+
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header("Acess-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS");
     next();
 });
-
-// var authenticate = function (req, res, next) {  //admin or user
-//     if (req.session.role == 'admin' || req.session.role == 'user') {
-//         next();
-//     } else {
-//         res.redirect('/login');
-//     }
-
-// }
-
-// app.use(authenticate);
 
 
 function verifyToken(req, res, next) {//token
@@ -55,7 +45,7 @@ function verifyToken(req, res, next) {//token
 const login = require('./routes/login'); //login page
 app.use('/login', login);
 app.get('/logout', function (req, res) {
-    // req.session.destroy();
+    req.session.destroy();
     res.redirect('/login');
 });
 
@@ -66,7 +56,10 @@ const group = require('./routes/group'); //books and author group page
 app.use('/group', group);
 
 const add = require('./routes/addform'); //add book and add author page
-app.use('/add', add);
+app.use('/add',verifyToken, add);
+
+const dlete = require('./routes/delete'); //add book and add author page
+app.use('/delete',verifyToken, dlete);
 
 
 

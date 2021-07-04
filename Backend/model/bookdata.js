@@ -17,8 +17,6 @@ const BookSchema = new Schema({
     author : String,
     categories : String
 
-            
-
 
 });
 

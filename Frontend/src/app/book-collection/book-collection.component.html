@@ -17,11 +17,12 @@
 </section>
 
 <section>
-    <div class="col" >
-        <div class="row1">           
-            <div class=" b"  *ngFor='let BookCollection of BookCollections'>
-                <a style="cursor:pointer" (click)="getBook(id)" routerLink="/books/:id">                    
-                    <img src="../../assets/images/{{BookCollection.image}}">
+    <div class="col">
+        <div class="row1">
+            <div class=" b" *ngFor='let BookCollection of BookCollections'>
+                <a style="cursor:pointer" (click)="getBook(BookCollection._id)">
+                    <!-- routerLink="/books/{{BookCollection._id}}" -->
+                    <img src="{{BookCollection.image}}">
                     <br>
                     <span class="book_name">
                         {{BookCollection.title}}<br>

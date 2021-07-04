@@ -1,5 +1,5 @@
 <div class="login">
-    <a class="button"  routerLink="">Logout</a>
+    <a class="button" *ngIf="_auth.loggedIn()" (click)="logout()" routerLink="">Logout</a>
 </div>
 <section class="sec-1">
     <div class="home">
@@ -8,15 +8,16 @@
                 <h1 id="head">THE LIBRARY</h1>
             </div>
             <div class="navBar" id="mainNavBar">
-                <a class="button" routerLink="/books" routerLinkActive="active" >Books</a>
-                <a class="button" routerLink="/authors" routerLinkActive="active" >Authors</a>
-
-                <a *ngIf="_auth.loggedIn() || _auth.userrole()=='admin'" (click)="loggedUser()" class="button" href="/add/add_book">Add Books</a>
-                <a class="button" href="/add/add_author">Add Authors</a>
-
-                <a *ngIf="_auth.loggedIn()" (click)="loggedUser()"  class="button" href="#contact">Contact</a>
+                <a class="button" *ngIf="_auth.loggedIn()" routerLink="/books" routerLinkActive="active">Books</a>
+                <a class="button" *ngIf="_auth.loggedIn()" routerLink="/authors" routerLinkActive="active">Authors</a>
+                <a class="button" [hidden]="_auth.loggedIn() && _auth.getUser()=='user'" routerLink="/addbook">Add
+                    Books</a>
+                <a class="button" [hidden]="_auth.loggedIn() && _auth.getUser()=='user' " routerLink="/addauthor">Add
+                    Authors</a>
+                <a class="button" (click)="goToBottom()">Contact</a>
             </div>
         </nav>
+
         <div class="search">
             <form class="search-box">
                 <input type="text" placeholder=" Search book title or author " />

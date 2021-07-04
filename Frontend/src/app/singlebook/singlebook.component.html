@@ -1,9 +1,9 @@
 <app-navigator></app-navigator>
 
-<div class="section hero">
+<div class="section hero" *ngFor=" let singlebook of singlebooks">
     <div class="container">
         <div class="row">
-            <div class="one-half column col-6 textshadow" *ngFor='let singlebook of singlebooks'>
+            <div class="one-half column col-6 textshadow" >
                 <h4 class="titleshadow">
                     {{singlebook.title}}
                 </h4>
@@ -38,15 +38,28 @@
                 </div>
                 <div class="column">
                     <div class=" row value">
-                        <a class="button btn2" href="/add/update_book/<%=data.id%>" id="updatebook">Update</a>
+                        <a class="button btn2" (click)="updateBook(singlebook)" [hidden]="_auth.loggedIn() && _auth.getUser()=='user' " id="updatebook">Update</a>
                     </div>
                     <div class=" row value">
-                        <a class="button btn2" onclick="deleteFunc()" id="deletebook">Delete</a>
+                        <a class="button btn2" (click)="deleteBook(singlebook)" [hidden]="_auth.loggedIn() && _auth.getUser()=='user' " id="deletebook">Delete</a>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="one-half column phones col-6">
+            <img class="phone" src="{{singlebook.image}}">
+        </div>
     </div>
 </div>
-
+<div class="section get-help" *ngFor=" let singlebook of singlebooks">
+    <div class="container-fluid textshadow">
+        <h3 class="section-heading">About</h3>
+        <br>
+        <p class="section-description">
+            {{singlebook.about}}
+        </p>
+    </div>
+</div>
 <app-footer></app-footer>
+
+

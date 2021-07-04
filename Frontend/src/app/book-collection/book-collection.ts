@@ -1,6 +1,6 @@
 export class BookCollectionModel {
     constructor(
-        public id:any,
+        public _id:String,
         public title: String,
         public pageCount: String,
         public publishedDate: String,

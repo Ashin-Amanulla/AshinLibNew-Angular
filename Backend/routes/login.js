@@ -1,6 +1,6 @@
 const express = require('express');
 let app = express.Router();
-const jwt= require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 const SignUpData = require('../model/signupdata');
 
@@ -17,39 +17,34 @@ const SignUpData = require('../model/signupdata');
 
 app.post('/', function (req, res) {
 
-    console.log(req.body,"aaff");
+    console.log(req.body, "/loginroute");
     let username = req.body.username;
     let password = req.body.password;
 
     // mongo check for user
     if (username == 'admin' && password == '1234') {
-        // req.session.role = 'admin';
+        req.session.role = 'admin';
         console.log("admin login success")
-
-        let payload = {subject: username+password, role: 'admin'}
+        let payload = { subject: username + password }
         let token = jwt.sign(payload, 'secretKey')
-        res.send({ status: true,token ,role: 'admin'});
+        res.send({ status: true, token, role: 'admin' });
 
     } else {
         SignUpData.findOne({ Username: username, Password: password }, function (err, user) {
-            console.log(req.body,"aaff");
-
+            console.log(req.body, "mongodbcheck for user");
             if (err) {
                 res.send({ status: false, data: 'Response error. No Internet' });
-
             }
-            
-
             else if (user) {
-                let payload = {subject: username+password, role: 'user'}
+                console.log("local user login success")
+                let payload = { subject: username + password}
                 let token = jwt.sign(payload, 'secretKey')
-                res.send({ status: true,token, role: 'user' })
+                res.send({ status: true, token, role: 'user' })
+                console.log({ status: true, token, role: 'user' })
             } else {
                 res.send({ status: false, data: 'NOT FOUND' });
             }
             console.log("user data", user)
-
-
         });
     }
 });
@@ -57,15 +52,20 @@ app.post('/', function (req, res) {
 //signup data insert to mongo db
 
 app.post('/signup', function (req, res) {
+    let item = {
 
-    console.log(req.body)
-    var signup = SignUpData(req.body);
+        Username: req.body.user.username,
+        Password: req.body.user.password,
+        Email: req.body.user.email
+
+
+    }
+
+    let signup = SignUpData(item);
     signup.save().then(function (data) {
-        console.log('data added', data);
-        res.send({ status: true });
+        res.send(true);
     }).catch(function (error) {
-        console.log('error added', error);
-        res.send({ status: false, data: 'Unexpected Error' });
+        res.send(false);
     })
 
     //ends

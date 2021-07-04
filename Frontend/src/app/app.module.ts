@@ -1,11 +1,10 @@
-import { NgModule , CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularMaterialModule } from './angular-material.module';
-import { HttpClientModule, HTTP_INTERCEPTORS, HttpInterceptor} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpInterceptor } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { AddComponent } from './add/add.component';
 import { RegisterComponent } from './register/register.component';
 import { SigninComponent } from './signin/signin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,11 +20,16 @@ import { NavigatorComponent } from './navigator/navigator.component';
 import { SinglebookComponent } from './singlebook/singlebook.component';
 import { AuthorCollectionComponent } from './author-collection/author-collection.component';
 import { BookCollectionComponent } from './book-collection/book-collection.component';
+import { SingleauthorComponent } from './singleauthor/singleauthor.component';
+import { AddauthorComponent } from './addauthor/addauthor.component';
+import { AddbookComponent } from './addbook/addbook.component';
+import { UpdateBookComponent } from './update-book/update-book.component';
+import { UpdateAuthorComponent } from './update-author/update-author.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AddComponent,
     RegisterComponent,
     SigninComponent,
     LoginheaderComponent,
@@ -34,7 +38,12 @@ import { BookCollectionComponent } from './book-collection/book-collection.compo
     NavigatorComponent,
     SinglebookComponent,
     BookCollectionComponent,
-    AuthorCollectionComponent
+    AuthorCollectionComponent,
+    SingleauthorComponent,
+    AddauthorComponent,
+    AddbookComponent,
+    UpdateAuthorComponent,
+    UpdateBookComponent
   ],
   imports: [
     BrowserModule,
@@ -42,17 +51,18 @@ import { BookCollectionComponent } from './book-collection/book-collection.compo
     BrowserAnimationsModule,
     FlexLayoutModule,
     AngularMaterialModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularMaterialModule 
-    
+    AngularMaterialModule
+
   ],
-  providers: [AuthService,AuthGuard, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptorService,
-    multi: true
-  }],
+  providers: [AuthService, AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

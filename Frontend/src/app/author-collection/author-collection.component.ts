@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorCollectionModel } from './author-collection';
 import { CollectionService } from '../collection.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-author-collection',
@@ -15,9 +17,10 @@ import { CollectionService } from '../collection.service';
 export class AuthorCollectionComponent implements OnInit {
 
   AuthorCollections: AuthorCollectionModel[]=[];
-  id ={};
-
-  constructor(private AuthorCollectionservice :CollectionService) { }
+  _id: null;
+  
+  constructor(private AuthorCollectionservice :CollectionService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.AuthorCollectionservice.getAuthorCollections().subscribe((data)=>{
@@ -25,8 +28,11 @@ this.AuthorCollections=JSON.parse(JSON.stringify(data));
     })
 
   }
-  getBook(id:any){
-    console.log("this works")
+  getAuthor(_id:any){
+    console.log("get authorcollection id works")
+    console.log(_id);
+
+    this.router.navigate(['/authors/details'], { queryParams: { id: _id } });
   }
 
 }

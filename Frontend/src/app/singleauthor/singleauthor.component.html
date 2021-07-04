@@ -1,1 +1,57 @@
-<p>singleauthor works!</p>
+<app-navigator></app-navigator>
+
+<div class="section hero" *ngFor=" let singleauthor of singleauthors">
+    <div class="container">
+        <div class="row">
+            <div class="one-half column col-6 textshadow">
+                <h4 class="titleshadow">
+                    {{singleauthor.title}}
+                </h4>
+                <ul>
+                    <li>Nationality:
+                        {{singleauthor.country}}
+                    </li>
+                    <li>Date of Birth :
+                        {{singleauthor.dob}}
+                    </li>
+                    <li>Famous Works :
+                        {{singleauthor.FamousWorks}}
+                    </li>
+                </ul>
+
+                <div class="column">
+                    <div class="one-third row value">
+                        <a class="button btn1" href="#">Add to List</a>
+                    </div>
+                    <div class="one-third row value">
+                        <a class="button btn1" href="#">Read</a>
+                    </div>
+                    <div class="one-third row value">
+                        <a class="button btn1" href="#">Listen</a>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class=" row value">
+                        <a class="button btn2" [hidden]="_auth.loggedIn() && _auth.getUser()=='user' " (click)="updateAuthor(singleauthor)" id="updatebook">Update</a>
+                    </div>
+                    <div class=" row value">
+                        <a class="button btn2" [hidden]="_auth.loggedIn() && _auth.getUser()=='user' " (click)="deleteAuthor(singleauthor)" id="deletebook">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="one-half column phones col-6">
+            <img class="phone" src="{{singleauthor.image}}">
+        </div>
+    </div>
+</div>
+<div class="section get-help" *ngFor=" let singleauthor of singleauthors">
+    <div class="container-fluid textshadow">
+        <h3 class="section-heading">About</h3>
+        <br>
+        <p class="section-description">
+            {{singleauthor.about}}
+        </p>
+    </div>
+</div>
+<app-footer></app-footer>
