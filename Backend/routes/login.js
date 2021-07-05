@@ -25,9 +25,9 @@ app.post('/', function (req, res) {
     if (username == 'admin' && password == '1234') {
         req.session.role = 'admin';
         console.log("admin login success")
-        let payload = { subject: username + password }
+        let payload = { subject: username + password, admin:true }
         let token = jwt.sign(payload, 'secretKey')
-        res.send({ status: true, token, role: 'admin' });
+        res.send({ status: true, token, role: req.session.role });
 
     } else {
         SignUpData.findOne({ Username: username, Password: password }, function (err, user) {
@@ -37,9 +37,10 @@ app.post('/', function (req, res) {
             }
             else if (user) {
                 console.log("local user login success")
-                let payload = { subject: username + password}
+                req.session.role = 'user';
+                let payload = { subject: username + password,admin:false}
                 let token = jwt.sign(payload, 'secretKey')
-                res.send({ status: true, token, role: 'user' })
+                res.send({ status: true, token, role: req.session.role })
                 console.log({ status: true, token, role: 'user' })
             } else {
                 res.send({ status: false, data: 'NOT FOUND' });

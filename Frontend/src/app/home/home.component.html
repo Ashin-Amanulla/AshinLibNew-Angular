@@ -10,7 +10,7 @@
             <div class="navBar" id="mainNavBar">
                 <a class="button" *ngIf="_auth.loggedIn()" routerLink="/books" routerLinkActive="active">Books</a>
                 <a class="button" *ngIf="_auth.loggedIn()" routerLink="/authors" routerLinkActive="active">Authors</a>
-                <a class="button" [hidden]="_auth.loggedIn() && _auth.getUser()=='user'" routerLink="/addbook">Add
+                <a class="button"  [hidden]="_auth.loggedIn() && _auth.getUser()=='user'" routerLink="/addbook">Add
                     Books</a>
                 <a class="button" [hidden]="_auth.loggedIn() && _auth.getUser()=='user' " routerLink="/addauthor">Add
                     Authors</a>
