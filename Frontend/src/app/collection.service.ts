@@ -11,50 +11,53 @@ export class CollectionService {
 
   constructor(private http: HttpClient
   ) { }
+  
+  server_address :string ='/api';
+  // server_address :string ='http://localhost:8887';
 
 
   getBookCollections() {
-    return this.http.get("http://localhost:8887/group/books")
+    return this.http.get(`${this.server_address}/group/books`)
   }
 
   getBook(_id: any) {
-    return this.http.get("http://localhost:8887/group/books/" + _id);
+    return this.http.get(`${this.server_address}/group/books/` + _id);
   }
 
   getAuthorCollections() {
-    return this.http.get("http://localhost:8887/group/authors")
+    return this.http.get(`${this.server_address}/group/authors`)
   }
 
   getAuthor(_id: any) {
-    return this.http.get("http://localhost:8887/group/authors/" + _id);
+    return this.http.get(`${this.server_address}/group/authors/` + _id);
   }
 
   newBook(item: any) {
-    return this.http.post("http://localhost:8887/add/add_book", { "book": item })
+    return this.http.post(`${this.server_address}/add/add_book`, { "book": item })
   }
 
   newAuthor(item: any) {
-    return this.http.post("http://localhost:8887/add/add_author", { "author": item })
+    return this.http.post(`${this.server_address}/add/add_author`, { "author": item })
   }
 
   deleteBook(_id: any) {
-    return this.http.delete("http://localhost:8887/delete/deletebook/" + _id);
+    return this.http.delete(`${this.server_address}/delete/deletebook/` + _id);
   }
 
   updateBook(item: any) {
-    return this.http.post("http://localhost:8887/add/update_book", {"book": item})
+    return this.http.post(`${this.server_address}/add/update_book`, {"book": item})
   }
 
   deleteAuthor(_id: any) {
-    return this.http.delete("http://localhost:8887/delete/deleteauthor/" + _id);
+    return this.http.delete(`${this.server_address}/delete/deleteauthor/` + _id);
   }
 
   updateAuthor(item: any) {
-    return this.http.post("http://localhost:8887/add/update_author", {"author": item})
+    return this.http.post(`${this.server_address}/add/update_author`, {"author": item})
   }
 
   newUser(item: any) {
-    return this.http.post("http://localhost:8887/login/signup", { "user": item })
+    return this.http.post(`${this.server_address}/login/signup`, { "user": item })
   }
 
 }

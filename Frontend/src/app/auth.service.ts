@@ -7,13 +7,15 @@ import { Router } from '@angular/router'
 })
 export class AuthService {
 
-  private _loginUrl = "http://localhost:8887/login";
+  // private _loginUrl = "http://localhost:8887/login";
+  server_address :string ='/api';
+
 
   constructor(private http: HttpClient) { }
 
 
   loginUser(user: any) {
-    return this.http.post<any>(this._loginUrl, user)
+    return this.http.post<any>(`${this.server_address}`, user)
   }
 
   loggedIn()
