@@ -15,7 +15,7 @@ export class AuthService {
 
 
   loginUser(user: any) {
-    return this.http.post<any>(`${this.server_address}`, user)
+    return this.http.post<any>(`${this.server_address}/login`, user)
   }
 
   loggedIn()
